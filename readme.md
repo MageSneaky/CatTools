@@ -30,6 +30,7 @@ Download available at [releases page](https://github.com/MageSneaky/CatTools/rel
 ## Functions/Uses cases:
 - System Info
 - Find files
+- Simple calculator
 
 # Credits
 - <a href="https://github.com/OskarLindgren">Oskar</a>
