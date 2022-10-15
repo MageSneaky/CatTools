@@ -6,6 +6,6 @@ if not "%1"=="am_admin" (
     exit /b
 )
 
-curl https://sneaky.pink/cattools/cattools.exe -o C:\Windows\System32\cattools.exe
+curl https://cattools.sneaky.pink/cattools/cattools.exe -o C:\Windows\System32\cattools.exe
 
 del %0

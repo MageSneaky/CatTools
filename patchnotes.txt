@@ -1,0 +1,27 @@
+V1.0 Patchnotes:
+
+We uhhh... made the program?
+
+----
+
+V1.1 Patchnotes:
+
+Fixed formating issues
+    Added % to percentage based values
+
+---
+
+V1.2 Patchnotes:
+
+Added a calculator function
+    Adds the ability to perform simple arithmatic such as 1+2 or 69**420/1337
+Made changes changes to sinfo
+    Fixed sinfo saying that you are using AMD64 regardles or architecture
+    Added GPU info (WIP)
+Made changes to the help command
+    Made more clear
+    Changed how the authors are worked internaly (making it easier to add more authors)
+
+---
+
+V1.3 Patchnotes: 

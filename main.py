@@ -1,4 +1,13 @@
-import os, sys, platform, psutil, win32api, socket, netifaces
+import os
+import sys
+import platform
+import psutil
+import win32api
+import socket
+import netifaces
+import tkinter as tk
+import GPUtil
+
 from time import sleep
 
 os.system("title " + "CatTools") # sets title of cmd window
@@ -10,12 +19,13 @@ options = """
 0) Exit
 1) Sinfo
 2) WhereIs
+3) Calculator
 9) Help
 10) Version
 """
 
 #declarations
-version_number = "1.0"
+version_number = "1.2"
 authors = ["Alex Hjortsberg", "Oskar Lindgren"]
 github = "https://github.com/MageSneaky/CatTools"
 
@@ -23,16 +33,32 @@ github = "https://github.com/MageSneaky/CatTools"
 def Sinfo():
     os.system("title " + "CatTools - System Info")
     print("Please wait... Gathering system information.")
+    os.system("cls")
         
     # OS
-    print(f"=========================\n\nOPERATING SYSTEM\n\nArchitecture: {platform.machine()}\nVersion: {platform.version()}\nPlatform: {platform.platform()}")
+    if platform.machine()  == "AMD64":
+        arch = "x64 or AMD64"
+    else:
+        arch = platform.machine()
+        
+    print(f"=========================\n\nOPERATING SYSTEM\n\nArchitecture: {arch}\nVersion: {platform.version()}\nPlatform: {platform.platform()}")
         
     # CPU
-    print(f"=========================\n\nCPU\n\nCores: {psutil.cpu_count(False)}\nThreads: {psutil.cpu_count(True)}\nUsage: {psutil.cpu_percent()}")
+    print(f"=========================\n\nCPU\n\nName: {platform.processor()}\nCores: {psutil.cpu_count(False)}\nThreads: {psutil.cpu_count(True)}\nUsage: {psutil.cpu_percent()}%")
         
     # RAM
-    print(f"=========================\n\nMEMORY\n\nTotal Physical Memory: {round(psutil.virtual_memory().total/1024/1024/1024, 2)}GB\nUsage: {psutil.virtual_memory()[2]}")
-        
+    print(f"=========================\n\nMEMORY\n\nTotal Physical Memory: {round(psutil.virtual_memory().total/1024/1024/1024, 2)}GB\nUsage: {psutil.virtual_memory()[2]}%")
+       
+    # GPU
+    GPUs = GPUtil.getGPUs()
+    if len(GPUs) == 1:
+        gpu = GPUs[0]
+        print(f"=========================\n\nGPU\n\nLoad: {round(gpu.load*100, 2)}%\nMemLoad: {round(gpu.memoryUtil*100, 2)}%\n")
+    else:
+        for gpu in GPUs:
+            print(f"=========================\n\nGPU{gpu.id}\n\nLoad: {round(gpu.load*100, 2)}%\nMemLoad: {round(gpu.memoryUtil*100, 2)}%\n")
+    
+    
     # Drives
     drives = win32api.GetLogicalDriveStrings().split('\000')[:-1]
     print(f"=========================\n\nDISK\n")
@@ -91,17 +117,35 @@ def WhereIs(filename=None):
 def Help():
     os.system("title " + "CatTools - Help")
     print(f"Commands")
-    print(f"help - Prints commands and options")
-    print(f"version - Prints program version")
-    print(f"sinfo - Prints system info")
-    print(f"whereis FILENAME - Finds path to file searched for")
-    print(f"\n\n{github}\nMade by: {authors[0]} & {authors[1]}")
+    print(f"help, h - Displays commands and options")
+    print(f"version, v - Displays program version")
+    print(f"sinfo - Displays system information")
+    print(f"whereis FILENAME - Finds path(s) to file searched for")
+    print(f"calculator, calc - Opens a simple calculator")
+    print(f"\n{github}\nMade by: {' & '.join(authors)}")
     
     print("Press enter to continue")
     input()
     Start()
       
-# Version options
+def Calculator():
+    print("Press q to exit")
+    print("[Uses python syntax]")
+    while True:
+        userinput = input("Equaction: ")
+        if userinput.lower() == 'q':
+            print("test")
+            Start()
+        else:
+            try:
+                print(eval(userinput))
+            except Exception as e:
+                print(e)
+                input("Press enter to continue")
+                Start()
+    
+
+# Version option
 def Version():
     os.system("title " + "CatTools - Version")
     print(f"Version: {version_number}\n")
@@ -130,6 +174,9 @@ def Start():
         elif selection == 2:
             os.system("cls")
             WhereIs()
+        elif selection == 3:
+            os.system("cls")
+            Calculator()
         elif selection == 9:
             os.system("cls")
             Help()
@@ -143,6 +190,10 @@ def Start():
         os.system("cls")
         sys.argv = [sys.argv[0]]
         Sinfo()   
+    elif any(sys.argv[1] == s for s in ["calc", "calculator"]):
+        os.system("cls")
+        sys.argv = [sys.argv[0]]
+        Calculator()        
     elif any(sys.argv[1] == s for s in ["help", "h"]):
         os.system("cls")
         sys.argv = [sys.argv[0]]
@@ -151,7 +202,7 @@ def Start():
         os.system("cls")
         sys.argv = [sys.argv[0]]
         Version()
-    elif any(sys.argv[1] == s for s in ["whereis", "where"]):
+    elif any(sys.argv[1] == s for s in ["whereis"]):
         if len(sys.argv) > 1:
             os.system("cls")
             WhereIs(sys.argv[2])

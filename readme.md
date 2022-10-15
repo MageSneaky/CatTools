@@ -21,10 +21,11 @@ Download available at [releases page](https://github.com/MageSneaky/CatTools/rel
 ## Usage
     cattools [OPTIONS]
 ## General Options:
-    help, h                     Prints commands and options
-    version, v                  Prints program version
-    sinfo                       Prints system info
-    whereis, where FILENAME     Finds path to file searched for
+    help, h                     Displays commands and options
+    version, v                  Displays program version
+    sinfo                       Displays system information
+    whereis, where FILENAME     Finds path(s) to file searched for
+    calculator, calc            Opens a simple calculator
 
 ## Functions/Uses cases:
 - System Info
