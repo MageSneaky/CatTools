@@ -1,13 +1,16 @@
-
+> **Warning**
+This version is discontinued, use <a href="https://github.com/OskarLindgren/GeneralPurposeTools">GPT</a> instead.
 # CatTools
+
 <p align="center">
   <a href="https://sneaky.pink">
-    <img src="https://sneaky.pink/cattoolsbanner.png"></a>
+    <img src="https://sneaky.pink/images/cattoolsbanner.png"></a>
 </p>
 <p align="center">
 <a href="https://github.com/MageSneaky/CatTools/releases"><img alt="GitHub all releases" src="https://img.shields.io/github/downloads/MageSneaky/CatTools/total?color=pink&label=Downloads&logo=github&style=flat-square"></a>
 <a href="https://github.com/MageSneaky/CatTools"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/MageSneaky/CatTools?color=pink&label=Repo%20Size&logo=github&style=flat-square"></a>
 <a href="https://sneaky.pink"><img alt="Website" src="https://img.shields.io/website?down_color=pink&down_message=sneaky.pink&label=Website&up_color=pink&up_message=sneaky.pink&url=https%3A%2F%2Fsneaky.pink"></a>
+<a href="https://github.com/OskarLindgren/GeneralPurposeTools"><img alt="Discontinued" src="https://img.shields.io/badge/status-discontinued-red.svg"></a>
 </p>
 
 **Saves NO passwords** or any user information.
